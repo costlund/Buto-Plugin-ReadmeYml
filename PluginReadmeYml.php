@@ -96,8 +96,20 @@ class PluginReadmeYml{
       }
     }
     /**
+     * Save to file also.
+     */
+    if($data->get('data/save')){
+      wfDocument::$capture = 1;
+    }
+    /**
      * 
      */
     wfDocument::renderElement($element);
+    /**
+     * Save to file.
+     */
+    if($data->get('data/save')){
+      wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), wfDocument::getContent());
+    }
   }
 }
