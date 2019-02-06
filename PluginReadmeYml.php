@@ -6,8 +6,76 @@ class PluginReadmeYml{
   }
   public function widget_parse($data){
     $data = new PluginWfArray($data);
+    /**
+     * Get element.
+     */
+    $element = $this->getElement($data->get('data/file'));
+    /**
+     * Save to file.
+     */
+    if($data->get('data/save')){
+      $content = $this->getElementAsReadme($element);
+      wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), $content);
+    }
+    /**
+     * 
+     */
+    wfDocument::renderElement($element);
+  }
+  private function getElementAsReadme($element){
+    $s = null;
+    foreach ($element as $v) {
+      $v = new PluginWfArray($v);
+      if($v->get('type')=='h1'){
+        $s .= '# '.$v->get('innerHTML')."\n\n";
+      }elseif($v->get('type')=='h2'){
+        $s .= '## '.$v->get('innerHTML')."\n\n";
+      }elseif($v->get('type')=='h3'){
+        $s .= '### '.$v->get('innerHTML')."\n\n";
+      }elseif($v->get('type')=='p'){
+        $s .= ''.$v->get('innerHTML')."\n\n";
+      }elseif($v->get('type')=='a'){
+        $s .= '<a name="'.$v->get('attribute/name').'">'.null."</a>\n\n";
+      }elseif($v->get('type')=='ul'){
+        foreach ($v->get('innerHTML') as $ul1) {
+          $li1 = new PluginWfArray($ul1);
+          if($li1->get('type')=='li'){
+            $s .= $this->getReadmeLink($li1);
+          }elseif($li1->get('type')=='ul'){
+            foreach ($li1->get('innerHTML') as $ul2) {
+              $li2 = new PluginWfArray($ul2);
+              if($li2->get('type')=='li'){
+                $s .= $this->getReadmeLink($li2, 1);
+              }elseif($li2->get('type')=='ul'){
+                foreach ($li2->get('innerHTML') as $ul3) {
+                  $li3 = new PluginWfArray($ul3);
+                  if($li3->get('type')=='li'){
+                    $s .= $this->getReadmeLink($li3, 2);
+                  }elseif($li3->get('type')=='ul'){
+                  }
+                }
+              }
+            }
+          }
+        }
+        $s .= "\n\n";
+      }
+    }
+    return $s;
+  }
+  private function getReadmeLink($e, $level = 0){
+    $line = str_repeat(' ', $level*2);
+    $s = "$line- [".$e->get('innerHTML/0/innerHTML')."](".$e->get('innerHTML/0/attribute/href').") \n";
+    return $s;
+  }
+  /**
+   * Get elements from yml file.
+   * @param string $file From app root.
+   * @return array With elements.
+   */
+  public function getElement($file){
     $parser = new PluginReadmeParser();
-    $readme = new PluginWfYml(wfGlobals::getAppDir().$data->get('data/file'));
+    $readme = new PluginWfYml(wfGlobals::getAppDir().$file);
     /**
      * Set ids.
      */
@@ -95,21 +163,6 @@ class PluginReadmeYml{
         }
       }
     }
-    /**
-     * Save to file also.
-     */
-    if($data->get('data/save')){
-      wfDocument::$capture = 1;
-    }
-    /**
-     * 
-     */
-    wfDocument::renderElement($element);
-    /**
-     * Save to file.
-     */
-    if($data->get('data/save')){
-      wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), wfDocument::getContent());
-    }
+    return $element;
   }
 }
