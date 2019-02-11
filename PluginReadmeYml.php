@@ -32,6 +32,8 @@ class PluginReadmeYml{
         $s .= '## '.$v->get('innerHTML')."\n\n";
       }elseif($v->get('type')=='h3'){
         $s .= '### '.$v->get('innerHTML')."\n\n";
+      }elseif($v->get('type')=='h4'){
+        $s .= '#### '.$v->get('innerHTML')."\n\n";
       }elseif($v->get('type')=='p'){
         $s .= ''.$v->get('innerHTML')."\n\n";
       }elseif($v->get('type')=='a'){
