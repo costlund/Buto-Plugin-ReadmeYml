@@ -175,11 +175,7 @@ class PluginReadmeYml{
     if($data->get('date')){
       $calc_date = new PluginWfArray($this->calc_date->calcAll($data->get('date'), date('Y-m-d')));
       if($calc_date->get('days_total')<=30){
-        $innerHTML = $calc_date->get('days_total').' days ago';
-        if($calc_date->get('days_total')==0){
-          $innerHTML = 'Today';
-        }
-        $label .= ' <span class="badge badge-pill badge-success" title="'.$data->get('date').'">'. $innerHTML .'</span>';
+        $label .= ' <span class="badge badge-pill badge-success" title="'.$data->get('date').'">'.$data->get('date').'</span>';
       }
     }
     return $label;

@@ -1,5 +1,9 @@
-version: 1.1.0
+version: 1.1.1
 history:
+  1.1.1:
+    date: '2021-04-06'
+    title: Date
+    description: 'Show only date instead of days.'
   1.1.0:
     date: '2021-04-01'
     title: Date
