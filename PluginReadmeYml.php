@@ -40,7 +40,7 @@ class PluginReadmeYml{
       }elseif($v->get('type')=='h5'){
         $s .= '##### '.$v->get('innerHTML')."\n\n";
       }elseif($v->get('type')=='div'){
-        $s .= ''.$v->get('innerHTML')."\n\n";
+        $s .= ''.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='a'){
         $s .= '<a name="'.$v->get('attribute/name').'">'.null."</a>\n\n";
       }elseif($v->get('type')=='ul'){
@@ -167,32 +167,32 @@ class PluginReadmeYml{
     foreach ($readme->get() as $v1) {
       $i1 = new PluginWfArray($v1);
       $element[] = wfDocument::createHtmlElement('h1', $this->get_label($i1));
-      $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($i1->get('description')));
+      $element[] = wfDocument::createHtmlElement('div', $this->get_description($i1));
       $element[] = wfDocument::createHtmlElement('ul', $li1);
       if($i1->get('item')){
         foreach ($i1->get('item') as $v2) {
           $i2 = new PluginWfArray($v2);
           $element[] = wfDocument::createHtmlElement('a', null, array('name' => $i2->get('id')));
           $element[] = wfDocument::createHtmlElement('h2', $this->get_label($i2));
-          $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($i2->get('description')), array('class' => 'alert alert-primary'));
+          $element[] = wfDocument::createHtmlElement('div', $this->get_description($i2), array('class' => 'alert alert-primary'));
           if($i2->get('item')){
             foreach ($i2->get('item') as $v3) {
               $i3 = new PluginWfArray($v3);
               $element[] = wfDocument::createHtmlElement('a', null, array('name' => $i3->get('id')));
               $element[] = wfDocument::createHtmlElement('h3', $this->get_label($i3));
-              $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($i3->get('description')), array('class' => 'alert alert-info'));
+              $element[] = wfDocument::createHtmlElement('div', $this->get_description($i3), array('class' => 'alert alert-info'));
               if($i3->get('item')){
                 foreach ($i3->get('item') as $v4) {
                   $i4 = new PluginWfArray($v4);
                   $element[] = wfDocument::createHtmlElement('a', null, array('name' => $i4->get('id')));
                   $element[] = wfDocument::createHtmlElement('h4', $this->get_label($i4));
-                  $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($i4->get('description')), array('class' => 'alert alert-light'));
+                  $element[] = wfDocument::createHtmlElement('div', $this->get_description($i4), array('class' => 'alert alert-light'));
                   if($i4->get('item')){
                     foreach ($i4->get('item') as $v5) {
                       $i5 = new PluginWfArray($v5);
                       $element[] = wfDocument::createHtmlElement('a', null, array('name' => $i5->get('id')));
                       $element[] = wfDocument::createHtmlElement('h5', $this->get_label($i5));
-                      $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($i5->get('description')));
+                      $element[] = wfDocument::createHtmlElement('div', $this->get_description($i5));
                     }
                   }
                 }
@@ -201,6 +201,15 @@ class PluginReadmeYml{
           }
         }
       }
+    }
+    return $element;
+  }
+  private function get_description($data){
+    $parser = new PluginReadmeParser();
+    $element = array();
+    $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($data->get('description')));
+    if($data->get('description_dev')){
+      $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($data->get('description_dev')), array('class' => 'text-danger'));
     }
     return $element;
   }

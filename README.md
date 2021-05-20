@@ -31,11 +31,21 @@ readme:
           name: Level two
           description: |
             Some text.
-            ```
             var x = 1;
-            ```
           item:
             -
               name: Level three
               description: ''
+```
+
+## Development
+To help development of a readme one could use parameter description_dev.
+This will add extra text to description (not in md file).
+```
+readme:
+  name: 'My system documentation'
+  description: |
+    Description of my software.
+  description_dev: |
+    Description of my application.
 ```
