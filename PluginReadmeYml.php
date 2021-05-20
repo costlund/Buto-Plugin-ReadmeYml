@@ -209,7 +209,7 @@ class PluginReadmeYml{
     if($data->get('date')){
       $calc_date = new PluginWfArray($this->calc_date->calcAll($data->get('date'), date('Y-m-d')));
       if($calc_date->get('days_total')<=30){
-        $label .= ' <span class="badge badge-pill badge-success" title="'.$data->get('date').'">'.$data->get('date').'</span>';
+        $label .= ' <span class="badge badge-pill badge-success" style="font-size:10px" title="'.$data->get('date').'">'.$data->get('date').'</span>';
       }
     }
     return $label;
