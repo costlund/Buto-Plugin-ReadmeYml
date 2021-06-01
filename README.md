@@ -15,7 +15,7 @@ data:
     save: /sys/mercury/README.md
 ```
 
-Example data.
+## Example
 ```
 readme:
   name: 'My system documentation'
@@ -36,6 +36,24 @@ readme:
             -
               name: Level three
               description: ''
+```
+
+## Example - Link
+One could add link between elements.
+```
+readme:
+  name: 'My system documentation'
+  date: '2021-03-28'
+  description: |
+    Description of my software.
+  item:
+    -
+      name: 'Level one'
+      link: level_two
+      description: 'Read more in Level two.'
+    -
+      name: 'Level two'
+      anchor: level_two
 ```
 
 ## Development

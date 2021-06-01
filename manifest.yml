@@ -1,5 +1,9 @@
-version: 1.3.0
+version: 1.4.0
 history:
+  1.4.0:
+    date: '2021-06-01'
+    title: 'Links and description'
+    description: 'One could add links between elements. Hide description element if no description is set.'
   1.3.0:
     date: '2021-05-20'
     title: Development
