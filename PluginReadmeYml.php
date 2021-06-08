@@ -233,7 +233,7 @@ class PluginReadmeYml{
   private function get_link($data){
     $element = null;
     if($data->get('link')){
-      $element = wfDocument::createHtmlElement('a', 'Link', array('href' => '#'.$data->get('link'), 'class' => 'btn btn-secondary btn-sm'));
+      $element = wfDocument::createHtmlElement('a', 'Link', array('href' => '#'.$data->get('link')));
     }
     return $element;
   }
