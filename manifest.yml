@@ -1,5 +1,9 @@
-version: 1.4.4
+version: 1.5.0
 history:
+  1.5.0:
+    date: '2022-09-15'
+    title: Layout
+    description: 'Divide links and content into left and right div for better visibility.'
   1.4.4:
     date: '2022-06-07'
     title: Versions
