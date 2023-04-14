@@ -1,5 +1,9 @@
-version: 1.5.2
+version: 1.5.3
 history:
+  1.5.3:
+    date: '2023-04-14'
+    title: Scroll spy
+    description: 'Add scroll spy.'
   1.5.2:
     date: '2022-09-27'
     title: Versions

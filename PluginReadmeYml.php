@@ -172,7 +172,7 @@ class PluginReadmeYml{
         foreach ($i1->get('item') as $v2) {
           $i2 = new PluginWfArray($v2);
           $content[] = $this->get_anchor($i2);
-          $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i2->get('id')));
+          $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i2->get('id'), 'id' => $i2->get('id')));
           $content[] = wfDocument::createHtmlElement('h2', $this->get_label($i2));
           $content[] = $this->get_link($i2);
           $content[] = $this->get_div($i2, 'primary');
@@ -180,7 +180,7 @@ class PluginReadmeYml{
             foreach ($i2->get('item') as $v3) {
               $i3 = new PluginWfArray($v3);
               $content[] = $this->get_anchor($i3);
-              $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i3->get('id')));
+              $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i3->get('id'), 'id' => $i3->get('id')));
               $content[] = wfDocument::createHtmlElement('h3', $this->get_label($i3));
               $content[] = $this->get_link($i3);
               $content[] = $this->get_div($i3, 'info');
@@ -188,7 +188,7 @@ class PluginReadmeYml{
                 foreach ($i3->get('item') as $v4) {
                   $i4 = new PluginWfArray($v4);
                   $content[] = $this->get_anchor($i4);
-                  $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i4->get('id')));
+                  $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i4->get('id'), 'id' => $i4->get('id')));
                   $content[] = wfDocument::createHtmlElement('h4', $this->get_label($i4));
                   $content[] = $this->get_link($i4);
                   $content[] = $this->get_div($i4, 'light');
@@ -196,7 +196,7 @@ class PluginReadmeYml{
                     foreach ($i4->get('item') as $v5) {
                       $i5 = new PluginWfArray($v5);
                       $content[] = $this->get_anchor($i5);
-                      $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i5->get('id')));
+                      $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i5->get('id'), 'id' => $i5->get('id')));
                       $content[] = wfDocument::createHtmlElement('h5', $this->get_label($i5));
                       $content[] = $this->get_link($i5);
                       $content[] = $this->get_div($i5);
@@ -214,8 +214,9 @@ class PluginReadmeYml{
      */
     $element = array();
     $element[] = wfDocument::createHtmlElement('div', array(
-      wfDocument::createHtmlElement('div', $li1,     array('class' => 'col-md-3', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;')),
-      wfDocument::createHtmlElement('div', $content, array('class' => 'col-md-9', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;'))
+      wfDocument::createHtmlElement('div', $li1,     array('id' => 'my_navigation', 'class' => 'col-md-3', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;')),
+      wfDocument::createHtmlElement('div', $content, array('data-bs-spy' => 'scroll', 'data-bs-target' => '#my_navigation', 'class' => 'col-md-9', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;')),
+      wfDocument::createHtmlElement('style', '.active{color:red;font-weight:bold;}')
     ), array('class' => 'row'));
     /**
      * 
