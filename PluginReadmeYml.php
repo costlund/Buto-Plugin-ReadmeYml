@@ -214,10 +214,11 @@ class PluginReadmeYml{
      */
     $element = array();
     $element[] = wfDocument::createHtmlElement('div', array(
-      wfDocument::createHtmlElement('div', $li1,     array('id' => 'my_navigation', 'class' => 'col-md-3', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;')),
-      wfDocument::createHtmlElement('div', $content, array('data-bs-spy' => 'scroll', 'data-bs-target' => '#my_navigation', 'class' => 'col-md-9', 'style' => 'max-height:90vh;overflow:auto;border:solid 1px silver;')),
-      wfDocument::createHtmlElement('style', '.active{color:red;font-weight:bold;}')
-    ), array('class' => 'row'));
+      wfDocument::createHtmlElement('div', $li1,     array('id' => 'my_navigation',                                         'class' => 'col-md-3', 'style' => 'max-height:90vh;overflow:auto;list-style-type: none;')),
+      wfDocument::createHtmlElement('div', $content, array('data-bs-spy' => 'scroll', 'data-bs-target' => '#my_navigation', 'class' => 'col-md-9', 'style' => 'max-height:90vh;overflow:auto;')),
+      wfDocument::createHtmlElement('style', '.plugin_readme_yml .active{color:red;font-weight:bold;}'),
+      wfDocument::createHtmlElement('style', 'list-style-type: none;')
+    ), array('class' => 'row plugin_readme_yml'));
     /**
      * 
      */
