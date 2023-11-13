@@ -1,5 +1,9 @@
-version: 1.5.7
+version: 1.5.8
 history:
+  1.5.8:
+    date: '2023-11-13'
+    title: Date
+    description: 'Moved date. Remove from list.'
   1.5.7:
     date: '2023-11-13'
     title: External

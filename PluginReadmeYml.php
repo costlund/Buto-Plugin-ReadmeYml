@@ -30,15 +30,15 @@ class PluginReadmeYml{
     foreach ($element as $v) {
       $v = new PluginWfArray($v);
       if($v->get('type')=='h1'){
-        $s .= '# '.$v->get('innerHTML')."\n\n";
+        $s .= '# '.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='h2'){
-        $s .= '## '.$v->get('innerHTML')."\n\n";
+        $s .= '## '.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='h3'){
-        $s .= '### '.$v->get('innerHTML')."\n\n";
+        $s .= '### '.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='h4'){
-        $s .= '#### '.$v->get('innerHTML')."\n\n";
+        $s .= '#### '.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='h5'){
-        $s .= '##### '.$v->get('innerHTML')."\n\n";
+        $s .= '##### '.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='div'){
         $s .= ''.$v->get('innerHTML/0/innerHTML')."\n\n";
       }elseif($v->get('type')=='a'){
@@ -195,16 +195,15 @@ class PluginReadmeYml{
     $content = array();
     foreach ($readme->get() as $v1) {
       $i1 = new PluginWfArray($v1);
-      $content[] = wfDocument::createHtmlElement('h1', $this->get_label($i1));
+      $content[] = wfDocument::createHtmlElement('h1', array(wfDocument::createHtmlElement('span', $this->get_label($i1)), wfDocument::createHtmlElement('span', $this->get_date($i1), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
       $content[] = wfDocument::createHtmlElement('small', $i1->get('external'));
       $content[] = $this->get_div($i1);
-      //$content[] = wfDocument::createHtmlElement('ul', $li1);
       if($i1->get('item')){
         foreach ($i1->get('item') as $v2) {
           $i2 = new PluginWfArray($v2);
           $content[] = $this->get_anchor($i2);
           $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i2->get('id'), 'id' => $i2->get('id')));
-          $content[] = wfDocument::createHtmlElement('h2', $this->get_label($i2));
+          $content[] = wfDocument::createHtmlElement('h2', array(wfDocument::createHtmlElement('span', $this->get_label($i2)), wfDocument::createHtmlElement('span', $this->get_date($i2), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
           $content[] = wfDocument::createHtmlElement('small', $i2->get('external'));
           $content[] = $this->get_link($i2);
           $content[] = $this->get_div($i2, 'primary');
@@ -213,7 +212,7 @@ class PluginReadmeYml{
               $i3 = new PluginWfArray($v3);
               $content[] = $this->get_anchor($i3);
               $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i3->get('id'), 'id' => $i3->get('id')));
-              $content[] = wfDocument::createHtmlElement('h3', $this->get_label($i3));
+              $content[] = wfDocument::createHtmlElement('h3', array(wfDocument::createHtmlElement('span', $this->get_label($i3)), wfDocument::createHtmlElement('span', $this->get_date($i3), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
               $content[] = wfDocument::createHtmlElement('small', $i3->get('external'));
               $content[] = $this->get_link($i3);
               $content[] = $this->get_div($i3, 'secondary');
@@ -222,7 +221,7 @@ class PluginReadmeYml{
                   $i4 = new PluginWfArray($v4);
                   $content[] = $this->get_anchor($i4);
                   $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i4->get('id'), 'id' => $i4->get('id')));
-                  $content[] = wfDocument::createHtmlElement('h4', $this->get_label($i4));
+                  $content[] = wfDocument::createHtmlElement('h4', array(wfDocument::createHtmlElement('span', $this->get_label($i4)), wfDocument::createHtmlElement('span', $this->get_date($i4), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
                   $content[] = wfDocument::createHtmlElement('small', $i4->get('external'));
                   $content[] = $this->get_link($i4);
                   $content[] = $this->get_div($i4, 'info');
@@ -231,7 +230,7 @@ class PluginReadmeYml{
                       $i5 = new PluginWfArray($v5);
                       $content[] = $this->get_anchor($i5);
                       $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i5->get('id'), 'id' => $i5->get('id')));
-                      $content[] = wfDocument::createHtmlElement('h5', $this->get_label($i5));
+                      $content[] = wfDocument::createHtmlElement('h5', array(wfDocument::createHtmlElement('span', $this->get_label($i5)), wfDocument::createHtmlElement('span', $this->get_date($i5), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
                       $content[] = wfDocument::createHtmlElement('small', $i5->get('external'), array('style' => 'font-style:italic'));
                       $content[] = $this->get_link($i5);
                       $content[] = $this->get_div($i5, 'light');
@@ -295,12 +294,16 @@ class PluginReadmeYml{
   }
   private function get_label($data){
     $label = $data->get('name');
+    return $label;
+  }
+  private function get_date($data){
+    $date = '';
     if($data->get('date')){
       $calc_date = new PluginWfArray($this->calc_date->calcAll($data->get('date'), date('Y-m-d')));
       if($calc_date->get('days_total')<=30){
-        $label .= ' <span class="badge text-bg-info" style="font-size:10px" title="'.$data->get('date').'">'.$data->get('date').'</span>';
+        $date = $data->get('date');
       }
     }
-    return $label;
+    return $date;
   }
 }
