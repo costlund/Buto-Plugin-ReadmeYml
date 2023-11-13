@@ -1,5 +1,9 @@
-version: 1.5.6
+version: 1.5.7
 history:
+  1.5.7:
+    date: '2023-11-13'
+    title: External
+    description: 'Add external link text.'
   1.5.6:
     date: '2023-11-10'
     title: Layout
