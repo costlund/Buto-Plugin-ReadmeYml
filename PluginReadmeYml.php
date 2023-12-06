@@ -322,7 +322,7 @@ class PluginReadmeYml{
     $element = array();
     $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($data->get('description')));
     if($data->get('description_dev')){
-      $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($data->get('description_dev')), array('class' => 'text-info'));
+      $element[] = wfDocument::createHtmlElement('div', $parser->parse_text($data->get('description_dev')), array('class' => 'text-warning'));
     }
     return $element;
   }
