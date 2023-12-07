@@ -294,12 +294,14 @@ class PluginReadmeYml{
   }
   private function get_div($data, $alert = ''){
     $element = null;
+    $class = '';
+    if($alert){
+      $class = "alert alert-$alert";
+    }
     if($data->get('description')){
-      $class = '';
-      if($alert){
-        $class = "alert alert-$alert";
-      }
       $element = wfDocument::createHtmlElement('div', $this->get_description($data), array('class' => $class));
+    }else{
+      $element = wfDocument::createHtmlElement('div', '<small>(missing description)</small>', array('class' => $class.' text-center'));
     }
     return $element;
   }

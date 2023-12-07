@@ -1,5 +1,9 @@
-version: 1.5.10
+version: 1.5.11
 history:
+  1.5.11:
+    date: '2023-12-07'
+    title: Description
+    description: 'Always add description element even if it has no value.'
   1.5.10:
     date: '2023-12-06'
     title: Layout
