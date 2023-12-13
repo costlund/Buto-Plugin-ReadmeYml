@@ -17,7 +17,7 @@ class PluginReadmeYml{
      * Save to file.
      */
     if($data->get('data/save')){
-      $content = $this->getElementAsReadme($element[0]['innerHTML'][1]['innerHTML']);
+      $content = $this->getElementAsReadme($element[1]['innerHTML'][1]['innerHTML']);
       wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), $content);
     }
     /**
@@ -281,6 +281,16 @@ class PluginReadmeYml{
      * element
      */
     $element = array();
+    /**
+     * alert file path (webmaster)
+     */
+
+    $temp = wfDocument::getElementFromFolder(__DIR__, 'widget_parse_file');
+    $temp->setByTag(array('file' => $file));
+    $element[] = $temp->get();
+    /**
+     * 
+     */
     $element[] = wfDocument::createHtmlElement('div', array(
       wfDocument::createHtmlElement('div', $li1,     array('id' => 'my_navigation',                                         'class' => 'col-md-3', 'style' => 'max-height:90vh;overflow:auto;list-style-type: none;')),
       wfDocument::createHtmlElement('div', $content, array('data-bs-spy' => 'scroll', 'data-bs-target' => '#my_navigation', 'class' => 'col-md-9', 'style' => 'max-height:90vh;overflow:auto;')),

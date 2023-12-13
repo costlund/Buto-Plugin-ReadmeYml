@@ -1,0 +1,28 @@
+type: div
+settings:
+  role:
+    item:
+      - webmaster
+attribute: 
+  class: row
+innerHTML: 
+  -
+    type: div
+    attribute: 
+      class: col-md-12
+    innerHTML: 
+      -
+        type: span
+        attribute:
+          class: badge bg-secondary
+          style:
+            float: right
+        innerHTML: 
+          - 
+            type: strong
+            attribute:
+              class: content-colon
+            innerHTML: File
+          -
+            type: small
+            innerHTML: rs:file
