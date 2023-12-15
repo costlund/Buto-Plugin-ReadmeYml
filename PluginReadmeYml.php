@@ -308,11 +308,7 @@ class PluginReadmeYml{
     if($alert){
       $class = "alert alert-$alert";
     }
-    if($data->get('description')){
-      $element = wfDocument::createHtmlElement('div', $this->get_description($data), array('class' => $class));
-    }else{
-      $element = wfDocument::createHtmlElement('div', '<small>(missing description)</small>', array('class' => $class.' text-center'));
-    }
+    $element = wfDocument::createHtmlElement('div', $this->get_description($data), array('class' => $class));
     return $element;
   }
   private function get_anchor($data){

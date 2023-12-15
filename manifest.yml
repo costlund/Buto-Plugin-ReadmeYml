@@ -1,5 +1,9 @@
-version: 1.6.0
+version: 1.6.1
 history:
+  1.6.1:
+    date: '2023-12-15'
+    title: Description
+    description: 'Param description_dev was not shown if description not set.'
   1.6.0:
     date: '2023-12-13'
     title: File
