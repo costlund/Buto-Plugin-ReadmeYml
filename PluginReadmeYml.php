@@ -176,27 +176,27 @@ class PluginReadmeYml{
       if($i1->get('item')){
         foreach ($i1->get('item') as $v2) {
           $i2 = new PluginWfArray($v2);
-          $li1[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i2), array('href' => '#'.$i2->get('id')))));
+          $li1[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i2), array('href' => '#'.$i2->get('id'))), wfDocument::createHtmlElement('span', $this->get_date($i2), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:8px'))  ));
           if($i2->get('item')){
             $li2 = array();
             foreach ($i2->get('item') as $v3) {
               $i3 = new PluginWfArray($v3);
-              $li2[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i3), array('href' => '#'.$i3->get('id')))));
+              $li2[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i3), array('href' => '#'.$i3->get('id'))), wfDocument::createHtmlElement('span', $this->get_date($i3), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:8px'))));
               if($i3->get('item')){
                 $li3 = array();
                 foreach ($i3->get('item') as $v4) {
                   $i4 = new PluginWfArray($v4);
-                  $li3[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i4), array('href' => '#'.$i4->get('id')))));
+                  $li3[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i4), array('href' => '#'.$i4->get('id'))), wfDocument::createHtmlElement('span', $this->get_date($i4), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:8px'))));
                   if($i4->get('item')){
                     $li4 = array();
                     foreach ($i4->get('item') as $v5) {
                       $i5 = new PluginWfArray($v5);
-                      $li4[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i5), array('href' => '#'.$i5->get('id')))));
+                      $li4[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i5), array('href' => '#'.$i5->get('id'))), wfDocument::createHtmlElement('span', $this->get_date($i5), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:8px'))));
                       if($i5->get('item')){
                         $li5 = array();
                         foreach($i5->get('item') as $v6){
                           $i6 = new PluginWfArray($v6);
-                          $li5[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i6), array('href' => '#'.$i6->get('id')))));
+                          $li5[] = wfDocument::createHtmlElement('li', array(wfDocument::createHtmlElement('a', $this->get_label($i6), array('href' => '#'.$i6->get('id'))), wfDocument::createHtmlElement('span', $this->get_date($i6), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:8px'))));
                         }
                         $li4[] = wfDocument::createHtmlElement('ul', $li5);
                       }
