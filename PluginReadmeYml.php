@@ -18,7 +18,13 @@ class PluginReadmeYml{
      */
     if($data->get('data/save')){
       $content = $this->getElementAsReadme($element[1]['innerHTML'][1]['innerHTML']);
-      wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), $content);
+      $content_now = wfFilesystem::getContents($data->get('data/save'));
+      /**
+       * Save only if size diff.
+       */
+      if(strlen($content) != strlen($content_now)){
+        wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), $content);
+      }
     }
     /**
      * 

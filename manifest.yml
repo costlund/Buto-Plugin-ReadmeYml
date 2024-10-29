@@ -1,5 +1,9 @@
-version: 1.6.2
+version: 1.6.3
 history:
+  1.6.3:
+    date: '2024-10-29'
+    title: Save file
+    description: 'Save file only if size diff.'
   1.6.2:
     date: '2024-02-22'
     title: Date
