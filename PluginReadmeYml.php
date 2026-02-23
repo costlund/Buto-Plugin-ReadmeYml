@@ -139,6 +139,9 @@ class PluginReadmeYml{
     /**
      * Set external links.
      */
+
+
+    
     foreach ($readme->get() as $v1) {
       $i1 = new PluginWfArray($v1);
       if($i1->get('item')){
@@ -223,6 +226,7 @@ class PluginReadmeYml{
      */
     $content = array();
     $external_style = array('style' => 'font-style:italic;font-size:10px;');
+    $tag_style = array('style' => 'font-style:italic;font-size:12px;');
     foreach ($readme->get() as $v1) {
       $i1 = new PluginWfArray($v1);
       $content[] = wfDocument::createHtmlElement('h1', array(wfDocument::createHtmlElement('span', $this->get_label($i1)), wfDocument::createHtmlElement('span', $this->get_date($i1), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
@@ -234,6 +238,7 @@ class PluginReadmeYml{
           $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i2->get('id'), 'id' => $i2->get('id')));
           $content[] = wfDocument::createHtmlElement('h2', array(wfDocument::createHtmlElement('span', $this->get_label($i2)), wfDocument::createHtmlElement('span', $this->get_date($i2), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
           $content[] = wfDocument::createHtmlElement('code', $i2->get('external'), $external_style);
+          $content[] = wfDocument::createHtmlElement('div', $this->get_tag_text($i2->get('tag')) , $tag_style);
           $content[] = $this->get_link($i2);
           $content[] = $this->get_div($i2, 'primary');
           if($i2->get('item')){
@@ -243,6 +248,7 @@ class PluginReadmeYml{
               $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i3->get('id'), 'id' => $i3->get('id')));
               $content[] = wfDocument::createHtmlElement('h3', array(wfDocument::createHtmlElement('span', $this->get_label($i3)), wfDocument::createHtmlElement('span', $this->get_date($i3), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
               $content[] = wfDocument::createHtmlElement('code', $i3->get('external'), $external_style);
+              $content[] = wfDocument::createHtmlElement('div', $this->get_tag_text($i3->get('tag')) , $tag_style);
               $content[] = $this->get_link($i3);
               $content[] = $this->get_div($i3, 'secondary');
               if($i3->get('item')){
@@ -252,6 +258,7 @@ class PluginReadmeYml{
                   $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i4->get('id'), 'id' => $i4->get('id')));
                   $content[] = wfDocument::createHtmlElement('h4', array(wfDocument::createHtmlElement('span', $this->get_label($i4)), wfDocument::createHtmlElement('span', $this->get_date($i4), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
                   $content[] = wfDocument::createHtmlElement('code', $i4->get('external'), $external_style);
+                  $content[] = wfDocument::createHtmlElement('div', $this->get_tag_text($i4->get('tag')) , $tag_style);
                   $content[] = $this->get_link($i4);
                   $content[] = $this->get_div($i4, 'info');
                   if($i4->get('item')){
@@ -261,6 +268,7 @@ class PluginReadmeYml{
                       $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i5->get('id'), 'id' => $i5->get('id')));
                       $content[] = wfDocument::createHtmlElement('h5', array(wfDocument::createHtmlElement('span', $this->get_label($i5)), wfDocument::createHtmlElement('span', $this->get_date($i5), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
                       $content[] = wfDocument::createHtmlElement('code', $i5->get('external'), $external_style);
+                      $content[] = wfDocument::createHtmlElement('div', $this->get_tag_text($i5->get('tag')) , $tag_style);
                       $content[] = $this->get_link($i5);
                       $content[] = $this->get_div($i5, 'light');
                       if($i5->get('item')){
@@ -270,6 +278,7 @@ class PluginReadmeYml{
                           $content[] = wfDocument::createHtmlElement('a', null, array('name' => $i6->get('id'), 'id' => $i6->get('id')));
                           $content[] = wfDocument::createHtmlElement('p', array(wfDocument::createHtmlElement('span', $this->get_label($i6)), wfDocument::createHtmlElement('span', $this->get_date($i6), array('class' => 'badge bg-warning', 'style' => 'float:right;font-size:10px'))));
                           $content[] = wfDocument::createHtmlElement('code', $i6->get('external'), $external_style);
+                          $content[] = wfDocument::createHtmlElement('div', $this->get_tag_text($i6->get('tag')) , $tag_style);
                           $content[] = $this->get_link($i6);
                           $content[] = $this->get_div($i6, 'light');
                         }
@@ -353,5 +362,16 @@ class PluginReadmeYml{
       }
     }
     return $date;
+  }
+  private function get_tag_text($tag){
+
+    if(!$tag){
+
+      return null;
+
+    }else{
+      return "Tag: $tag";
+    }
+
   }
 }

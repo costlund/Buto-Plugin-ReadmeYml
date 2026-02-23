@@ -1,5 +1,9 @@
-version: 1.6.3
+version: 1.7.0
 history:
+  1.7.0:
+    date: '2026-02-23'
+    title: Tag
+    description: 'Add support for param tag.'
   1.6.3:
     date: '2024-10-29'
     title: Save file

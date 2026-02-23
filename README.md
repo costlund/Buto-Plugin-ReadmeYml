@@ -26,6 +26,7 @@ readme:
     -
       name: 'Level one'
       description: ''
+      tag: 'Any value for tracking'
       item:
         -
           name: Level two
