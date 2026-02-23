@@ -139,9 +139,6 @@ class PluginReadmeYml{
     /**
      * Set external links.
      */
-
-
-    
     foreach ($readme->get() as $v1) {
       $i1 = new PluginWfArray($v1);
       if($i1->get('item')){
@@ -364,14 +361,10 @@ class PluginReadmeYml{
     return $date;
   }
   private function get_tag_text($tag){
-
     if(!$tag){
-
       return null;
-
     }else{
       return "Tag: $tag";
     }
-
   }
 }
