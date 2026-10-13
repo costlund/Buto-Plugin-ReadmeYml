@@ -1,5 +1,9 @@
-version: 1.7.0
+version: 1.8.0
 history:
+  1.8.0:
+    date: '2026-10-13'
+    title: App dir
+    description: 'Add data/app_dir to widget_parse.'
   1.7.0:
     date: '2026-02-23'
     title: Tag

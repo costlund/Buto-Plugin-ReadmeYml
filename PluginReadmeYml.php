@@ -10,9 +10,15 @@ class PluginReadmeYml{
   public function widget_parse($data){
     $data = new PluginWfArray($data);
     /**
+     * App dir
+     */
+    if(!$data->get('data/app_dir')){
+      $data->set('data/app_dir', wfGlobals::getAppDir());
+    }
+    /**
      * Get element.
      */
-    $element = $this->getElement($data->get('data/file'));
+    $element = $this->getElement($data->get('data/file'), $data->get('data/app_dir'));
     /**
      * Save to file.
      */
@@ -23,7 +29,7 @@ class PluginReadmeYml{
        * Save only if size diff.
        */
       if(strlen($content) != strlen($content_now)){
-        wfFilesystem::saveFile(wfGlobals::getAppDir().$data->get('data/save'), $content);
+        wfFilesystem::saveFile($data->get('data/app_dir').$data->get('data/save'), $content);
       }
     }
     /**
@@ -98,8 +104,11 @@ class PluginReadmeYml{
    * @param string $file From app root.
    * @return array With elements.
    */
-  public function getElement($file){
-    $readme = new PluginWfYml(wfGlobals::getAppDir().$file);
+  public function getElement($file, $app_dir = null){
+    if(is_null($app_dir)){
+      $app_dir = wfGlobals::getAppDir();
+    }
+    $readme = new PluginWfYml($app_dir.$file);
     /**
      * Set ids.
      */
